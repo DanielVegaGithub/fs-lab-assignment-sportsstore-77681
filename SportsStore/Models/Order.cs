@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace SportsStore.Models {
-
-    public class Order {
-
+namespace SportsStore.Models
+{
+    public class Order
+    {
         [BindNever]
         public int OrderID { get; set; }
+
         [BindNever]
         public ICollection<CartLine> Lines { get; set; } = new List<CartLine>();
 
@@ -15,6 +16,7 @@ namespace SportsStore.Models {
 
         [Required(ErrorMessage = "Please enter the first address line")]
         public string? Line1 { get; set; }
+
         public string? Line2 { get; set; }
         public string? Line3 { get; set; }
 
@@ -33,5 +35,23 @@ namespace SportsStore.Models {
 
         [BindNever]
         public bool Shipped { get; set; }
+
+        [BindNever]
+        public string PaymentStatus { get; set; } = "Pending";
+
+        [BindNever]
+        public string? PaymentIntentId { get; set; }
+
+        [BindNever]
+        public string? PaymentConfirmationId { get; set; }
+
+        [BindNever]
+        public decimal PaymentAmount { get; set; }
+
+        [BindNever]
+        public string? PaymentCurrency { get; set; }
+
+        [BindNever]
+        public DateTime? PaymentProcessedAtUtc { get; set; }
     }
 }

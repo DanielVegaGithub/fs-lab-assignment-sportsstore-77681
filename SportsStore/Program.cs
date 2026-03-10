@@ -13,6 +13,9 @@ try
 
     var builder = WebApplication.CreateBuilder(args);
 
+    builder.Services.Configure<StripeSettings>(
+        builder.Configuration.GetSection("Stripe"));
+
     builder.Host.UseSerilog((context, services, configuration) => configuration
         .ReadFrom.Configuration(context.Configuration)
         .ReadFrom.Services(services)
@@ -28,6 +31,7 @@ try
 
     builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
     builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
+    builder.Services.AddScoped<IPaymentService, StripePaymentService>();
 
     builder.Services.AddRazorPages();
     builder.Services.AddDistributedMemoryCache();
