@@ -24,13 +24,13 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore dependencies
-        run: dotnet restore SportsStore/SportsStore.sln
+        run: dotnet restore SportsSln.sln
 
       - name: Build solution
-        run: dotnet build SportsStore/SportsStore.sln --configuration Release --no-restore
+        run: dotnet build SportsSln.sln --configuration Release --no-restore
 
       - name: Run tests
-        run: dotnet test SportsStore/SportsStore.sln --configuration Release --no-build --logger "trx;LogFileName=test-results.trx"
+        run: dotnet test SportsSln.sln --configuration Release --no-build --logger "trx;LogFileName=test-results.trx"
 
       - name: Upload test results
         if: always()
